@@ -60,4 +60,5 @@ async def on_message(message):
                 if match_keyword in search_item:
                     await message.channel.send(search_item)
                     number_of_words_found += 1
+open('search_history.txt', 'a').close()
 client.run(token)
