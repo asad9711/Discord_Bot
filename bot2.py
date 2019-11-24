@@ -40,10 +40,9 @@ async def on_message(message):
         query = message_words[1:]
         query = ' '.join(query)
 
-        for j in search(query, tld="com", num=5, stop=5, pause=1):
+        for j in search(query, stop=5, pause=1):
             response = j
             await message.channel.send(response)
-
         if 'game' in query:
             # persist the search on file system
             with open('search_history.txt', 'a') as f:
@@ -61,5 +60,4 @@ async def on_message(message):
                 if match_keyword in search_item:
                     await message.channel.send(search_item)
                     number_of_words_found += 1
-    # print(message_words)
 client.run(token)
