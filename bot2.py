@@ -36,7 +36,6 @@ async def on_message(message):
         query = message_words[1:]
         query = ' '.join(query)
 
-        # send the top 5 search result to channel
         for j in search(query, stop=5, pause=1):
             response = j
             await message.channel.send(response)
@@ -48,7 +47,9 @@ async def on_message(message):
         match_keyword = message_words[1]
 
         top_two_results = filter_from_search_history(match_keyword)
-        await message.channel.send(top_two_results)
+        print(top_two_results)
+        for result in top_two_results:
+            await message.channel.send(result[0])
 
 create_table_if_not_exists()
 client.run(app_settings.DISCORD_TOKEN)
